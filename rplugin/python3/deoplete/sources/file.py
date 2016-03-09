@@ -86,9 +86,9 @@ class Source(Base):
             h = self.vim.funcs.repeat(':h', len(m.group(1)))
             return re.sub(r'^\.+',
                           self.vim.funcs.fnamemodify(
-                              (self.vim.funcs.bufname('%')
+                              (self.vim.funcs.getcwd()
                                if buffer_path
-                               else self.vim.funcs.getcwd()), ':p' + h),
+                               else self.vim.funcs.bufname('%')), ':p' + h),
                           path)
         m = re.match(r'~/', path)
         if m and os.environ.get('HOME'):
